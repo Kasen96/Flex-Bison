@@ -1,0 +1,20 @@
+%{
+    #include <stdio.h>
+    void yyerror(const char *c); /* Supress C99 warning */
+    int yylex();                 /* Supress C99 warning on OSX */
+    extern char *yytext;         /* Correct for Flex */
+%}
+
+%token TOKNL TOKSEMI TOKPIPE TOKTEXT 
+
+%%
+commands:
+        | commands command
+        ;
+
+command : TOKNL   { printf("NL\n"); }
+        | TOKPIPE { printf("Pipe\n"); }
+        | TOKSEMI { printf("Semi\n"); }
+        | TOKTEXT { printf("Text ->%s<-\n", yytext); }
+        ;
+%%
