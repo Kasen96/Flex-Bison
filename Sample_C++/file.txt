@@ -1,0 +1,3 @@
+abc defghi
+// this line is comment, abc 123 !@#$
+!	@	#	$
