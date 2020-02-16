@@ -1,0 +1,12 @@
+%top{
+    #include <iostream>
+    extern "C"
+    int yylex();
+}
+
+%option noyywrap nounput batch noinput
+
+%%
+\n       { std::cout << "NL:" << std::endl; }
+.+       { std::cout << "Line: " << yytext << std::endl; }
+%%

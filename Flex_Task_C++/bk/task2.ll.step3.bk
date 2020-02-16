@@ -1,0 +1,14 @@
+%top{
+    #include "main.h"
+}
+
+%option noyywrap nounput batch noinput
+
+TEXT [^\|;\n]+
+
+%%
+\|           { return TOKPIPE; }
+\n           { return TOKNL; }
+;            { return TOKSEMI; }
+{TEXT}       { return TOKTEXT; }
+%%
