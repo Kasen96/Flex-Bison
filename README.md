@@ -13,6 +13,7 @@ Ubuntu 18.04
 # Files
 
 - chapter* are code examples in the book.
+- Sample_C++ is a simple example written in C++ and mix with C.
 - Flex_Task_C is the simple flex and bison task written in C.
 - Flex_Task_C++(insufficient) is the same task written in C and C++.
-- Sample_C++ is a simple example written in C++ and mix with C.
+- Flex_Task_C++ is still the same task written in C++ completely.
