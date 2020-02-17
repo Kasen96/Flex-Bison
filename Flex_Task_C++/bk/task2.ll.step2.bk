@@ -1,0 +1,11 @@
+%top{
+    #include "main.h"
+}
+
+%option noyywrap nounput batch noinput
+
+%%
+.+          { return yy::parser::make_TEXT(yytext); }
+\n          { return yy::parser::make_NL(yytext); }
+<<EOF>>     { return yy::parser::make_END(); }
+%%
