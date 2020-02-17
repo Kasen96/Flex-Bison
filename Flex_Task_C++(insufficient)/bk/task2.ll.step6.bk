@@ -1,0 +1,20 @@
+%top{
+    #include "main.h"
+}
+
+%option noyywrap nounput batch noinput stack
+
+%x VARIABLE
+
+TEXT [^\|;\$\n \t]|(\\\;)|(\\\|)|(\\\\)|(\\[ ])
+
+%%
+\$                  { yy_push_state(VARIABLE); }
+<VARIABLE>{TEXT}+   { yy_pop_state(); return TOKVAR; }
+
+\|           { return TOKPIPE; }
+\n           { return TOKNL; }
+;            { return TOKSEMI; }
+[ \t]+       { return TOKSPACE; }
+{TEXT}+      { return TOKTEXT; }
+%%

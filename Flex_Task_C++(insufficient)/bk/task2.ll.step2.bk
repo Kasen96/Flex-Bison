@@ -1,0 +1,10 @@
+%top{
+    #include "main.h"
+}
+
+%option noyywrap nounput batch noinput
+
+%%
+\n       { return TOKNL; }
+.+       { return TOKTEXT; }
+%%
