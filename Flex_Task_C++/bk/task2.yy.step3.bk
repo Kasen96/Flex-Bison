@@ -1,0 +1,30 @@
+%skeleton "lalr1.cc" 
+%defines
+%define api.value.type variant
+%define api.token.constructor
+
+%code{
+    #include "main.h"
+    YY_DECL;
+}
+
+%token <std::string> NL
+%token <std::string> PIPE
+%token <std::string> SEMI
+%token <std::string> TEXT
+%token END 0 "end of file"
+
+%type <std::string> commands
+%type <std::string> command
+
+%%
+commands: {}
+        | commands command
+        ;
+
+command : NL     { cout << "NL" << endl; }
+        | PIPE   { cout << "Pipe" << endl; }
+        | SEMI   { cout << "Semi" << endl; }
+        | TEXT   { cout << "Text ->" << $1 << "<-" << endl; }
+        ;
+%%

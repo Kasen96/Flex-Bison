@@ -1,0 +1,15 @@
+%top{
+    #include "main.h"
+}
+
+%option noyywrap nounput batch noinput
+
+TEXT [^\|;\n]
+
+%%
+\|          { return yy::parser::make_PIPE(yytext); }
+;           { return yy::parser::make_SEMI(yytext); }
+\n          { return yy::parser::make_NL(yytext); }
+{TEXT}+     { return yy::parser::make_TEXT(yytext); }
+<<EOF>>     { return yy::parser::make_END(); }
+%%
