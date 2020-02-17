@@ -1,0 +1,27 @@
+%{
+    #include "main.h"
+%}
+
+%token <string> TOKNL
+%token <string> TOKTEXT
+%token <string> TOKSEMI
+%token <string> TOKPIPE
+%token <string> TOKSPACE
+%token <string> TOKVAR
+
+%type <string> commands
+%type <string> command
+
+%%
+commands: {}
+        | commands command
+        ;
+
+command : TOKNL { cout << "NL" << endl; }
+        | TOKPIPE { cout << "Pipe" << endl; }
+        | TOKSEMI { cout << "Semi" << endl; }
+        | TOKSPACE { cout << "Blank " << strlen(yytext) << " chars" << endl; }
+        | TOKVAR { cout << "Var ->" << yytext << "<-" << endl; }
+        | TOKTEXT { cout << "Text ->" << yytext << "<-" << endl; }
+        ;
+%%
