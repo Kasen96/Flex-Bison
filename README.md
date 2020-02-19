@@ -17,3 +17,4 @@ Ubuntu 18.04
 - Flex_Task_C is the simple flex and bison task written in C.
 - Flex_Task_C++(insufficient) is the same task written in C and C++.
 - Flex_Task_C++ is still the same task written in C++ completely.
+- RPN Calc (a calculator using postfix operators) is a simple bison written in C.
