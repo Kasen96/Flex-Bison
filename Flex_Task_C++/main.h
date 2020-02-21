@@ -6,6 +6,7 @@
 #include "task2.tab.hh"
 
 #define YY_DECL yy::parser::symbol_type yylex()
+YY_DECL;
 
 using std::cout;
 using std::endl;
