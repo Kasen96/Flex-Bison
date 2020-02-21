@@ -14,7 +14,7 @@
 %type <string> command
 
 %%
-commands: {}
+commands: %empty {}
         | commands command
         ;
 
