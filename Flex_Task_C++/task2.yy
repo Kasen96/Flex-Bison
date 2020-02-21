@@ -5,7 +5,7 @@
 
 %code{
     #include "main.h"
-    YY_DECL;
+    //YY_DECL;
 }
 
 %token <std::string> NL PIPE SEMI SPACE VAR QUOTE TEXT
