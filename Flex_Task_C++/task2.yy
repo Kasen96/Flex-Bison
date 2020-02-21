@@ -8,20 +8,20 @@
     YY_DECL;
 }
 
-%token <std::string> NL
-%token <std::string> PIPE
-%token <std::string> SEMI
-%token <std::string> SPACE
-%token <std::string> VAR
-%token <std::string> QUOTE
-%token <std::string> TEXT
+%token <std::string> NL PIPE SEMI SPACE VAR QUOTE TEXT
+//%token <std::string> PIPE
+//%token <std::string> SEMI
+//%token <std::string> SPACE
+//%token <std::string> VAR
+//%token <std::string> QUOTE
+//%token <std::string> TEXT
 %token END 0 "end of file"
 
-%type <std::string> commands
-%type <std::string> command
+%type <std::string> commands command
+//%type <std::string> command
 
 %%
-commands: {}
+commands: { /* empty */ }
         | commands command
         ;
 
