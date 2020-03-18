@@ -1,0 +1,13 @@
+%top{
+    #include "main.h"
+}
+
+%option noyywrap nounput batch noinput
+
+%%
+[0-9]+      { return yy::parser::make_NUM(yytext); }
+,           { return yy::parser::make_COMMA(yytext); }
+\(          { return yy::parser::make_OPEN(yytext); }
+\)          { return yy::parser::make_CLOSE(yytext); }
+<<EOF>>     { return yy::parser::make_END(); }
+%%
