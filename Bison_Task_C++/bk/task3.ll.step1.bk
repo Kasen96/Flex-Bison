@@ -1,0 +1,17 @@
+%top{
+    #include "main.h"
+    #include "node.h"
+}
+
+%option noyywrap nounput batch noinput
+
+TEXT [^ \t\n;\|]
+
+%%
+{TEXT}+      { return yy::parser::make_TEXT(yytext); }
+[ \t]+       { return yy::parser::make_SPACE(yytext); }
+\n           { return yy::parser::make_NEWL(yytext); }
+;            { return yy::parser::make_SEMI(yytext); }
+\|           { return yy::parser::make_PIPE(yytext); }
+<<EOF>>      { return yy::parser::make_END(); }
+%%

@@ -1,0 +1,40 @@
+%skeleton "lalr1.cc"
+%language "c++"
+%defines
+%define api.value.type variant
+%define api.token.constructor
+
+%code requires{
+    #include "node.h"
+}
+
+%code{
+    #include "main.h"
+    Node root;
+}
+
+%token <std::string> NEWL SEMI PIPE SPACE TEXT
+%token END 0 "end of file"
+
+%type <Node> stream optline line anything
+
+%%
+stream : optline      { $$ = Node("stream", ""); $$.children.push_back($1); root = $$; }
+       | stream NEWL optline { $$ = $1; $$.children.push_back($3); root = $$; }
+       ;
+
+optline : /* empty */ { $$ = Node("optline", "empty"); }
+        | line        { $$ = Node("optline", "has line"); $$.children.push_back($1); }
+        ;
+
+line : anything  { $$ = $1; }
+     | line anything { $$ = Node("line", ""); $$.children.push_back($1); $$.children.push_back($2); }
+     ;
+
+anything : TEXT  { $$ = Node("WORD", $1); }
+         | SPACE { $$ = Node("BLANK", $1); }
+         | SEMI  { $$ = Node("SEMI", $1); }
+         | PIPE  { $$ = Node("PIPE", $1); }
+         ;
+
+%%
