@@ -1,0 +1,33 @@
+digraph {
+1 [label="stream:"];
+1 -> 2;
+2 [label="optline:has line"];
+2 -> 3;
+3 [label="command:"];
+3 -> 4;
+4 [label="WORD"];
+WORD4 [label="cmd"];
+4 -> WORD4;
+3 -> 5;
+5 [label="concatenate:"];
+5 -> 6;
+6 [label="WORD"];
+WORD6 [label="arg"];
+6 -> WORD6;
+5 -> 7;
+7 [label="QUOTED"];
+QUOTED7 [label="same arg"];
+7 -> QUOTED7;
+5 -> 8;
+8 [label="VAREXP"];
+VAREXP8 [label="alsothesame"];
+8 -> VAREXP8;
+3 -> 9;
+9 [label="WORD"];
+WORD9 [label="separate"];
+9 -> WORD9;
+1 -> 10;
+10 [label="optline"];
+optline10 [label="empty"];
+10 -> optline10;
+}
